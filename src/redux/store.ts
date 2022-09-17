@@ -1,11 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit'
 import universeReducer from "./slices/universe";
+import { fetchUniverse } from './actions/universe';
 
 const store = configureStore({
   reducer: {
     universe: universeReducer
-  },
+  }
 });
+
+store.dispatch(fetchUniverse());
 
 export default store;
 
