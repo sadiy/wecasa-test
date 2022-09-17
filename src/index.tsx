@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import './index.scss';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
+import { ThemeProvider } from '@mui/material';
 import store from './redux/store';
+import theme from './theme';
 import Router from './routes';
 
 const root = ReactDOM.createRoot(
@@ -11,9 +13,11 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <Router />
-    </Provider>
+    <ThemeProvider theme={theme}>
+      <Provider store={store}>
+        <Router />
+      </Provider>
+    </ThemeProvider>
   </React.StrictMode>
 );
 
