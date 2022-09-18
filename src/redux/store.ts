@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 import universeReducer from "./slices/universe";
+import shoppingBasketReducer from './slices/shoppingBasket';
 import { fetchUniverse } from './actions/universe';
 
 const store = configureStore({
   reducer: {
-    universe: universeReducer
+    universe: universeReducer,
+    shoppingBasket: shoppingBasketReducer
   }
 });
 

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Grid, CircularProgress, IconButton } from "@mui/material";
+import { Grid, CircularProgress, IconButton, Stack, Typography } from "@mui/material";
 import { useAppSelector } from "../../redux/hooks";
 import { universeSelector } from "../../redux/slices/universe";
 import { Prestation, Category } from "../../types";
@@ -42,10 +42,12 @@ const Prestations = () => {
         (
             category ?
                 <>
-                    <IconButton aria-label="back" onClick={handleBack}>
-                        <ArrowBackIcon />
-                    </IconButton>
-                    <h1>{data.title} {category.title}</h1>
+                    <Stack direction="row">
+                        <IconButton aria-label="back" onClick={handleBack}>
+                            <ArrowBackIcon />
+                        </IconButton>
+                        <Typography variant="h4">{data.title} {category.title}</Typography>
+                    </Stack>
                     <Grid container spacing={2}>
                         {renderPrestations(category.prestations)}
                     </Grid>

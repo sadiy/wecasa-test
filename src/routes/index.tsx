@@ -6,6 +6,7 @@ import {
 import { Container } from "@mui/material";
 import Categories from "../pages/Categories";
 import Prestations from "../pages/Prestations";
+import ShoppingBasket from "../components/ShoppingBasket";
 
 const Router = () => {
     return (
@@ -17,6 +18,7 @@ const Router = () => {
                         <Route index element={<Categories />} />
                     </Route>
                 </Routes>
+                <ShoppingBasket />
             </Container>
         </BrowserRouter>
     )
