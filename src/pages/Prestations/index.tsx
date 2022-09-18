@@ -1,15 +1,18 @@
 import { useState, useEffect } from "react";
-import { Grid, CircularProgress } from "@mui/material";
+import { Grid, CircularProgress, IconButton } from "@mui/material";
 import { useAppSelector } from "../../redux/hooks";
 import { universeSelector } from "../../redux/slices/universe";
 import { Prestation, Category } from "../../types";
 import PrestationCard from "../../components/Prestation";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import './index.scss';
 
 const Prestations = () => {
+    const navigate = useNavigate();
+
     const { categoryId } = useParams();
-    const { error, data } = useAppSelector(universeSelector);
+    const { data } = useAppSelector(universeSelector);
     const [category, setCategory] = useState<Category>();
 
     useEffect(() => {
@@ -23,9 +26,11 @@ const Prestations = () => {
         }
     }, [categoryId, data]);
 
-    const renderPrestations = (prestations: Prestation[]) => {
-        if (error) return (<strong>Prestations not available.. {error}</strong>)
+    const handleBack = () => {
+        navigate(-1);
+    }
 
+    const renderPrestations = (prestations: Prestation[]) => {
         return prestations.map((prestation: Prestation) => (
             <Grid key={`${prestation.reference}__card`} item sm={3} xs={12}>
                 <PrestationCard {...prestation} />
@@ -37,6 +42,9 @@ const Prestations = () => {
         (
             category ?
                 <>
+                    <IconButton aria-label="back" onClick={handleBack}>
+                        <ArrowBackIcon />
+                    </IconButton>
                     <h1>{data.title} {category.title}</h1>
                     <Grid container spacing={2}>
                         {renderPrestations(category.prestations)}

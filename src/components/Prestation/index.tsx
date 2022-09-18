@@ -1,18 +1,24 @@
 import { Box } from "@mui/system";
-import { Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Typography, IconButton } from "@mui/material";
 import { Prestation } from "../../types";
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import './index.scss';
 
-const PrestationCard = ({reference, title, duration, price}: Prestation) => {
+const PrestationCard = ({ reference, title, duration, price }: Prestation) => {
+
+    const addToBasket = () => {
+
+    }
+
     return (
-        <Link to={`/${reference}`} className="category--card__link">
-            <Box className="prestation--card">
-                <Typography variant="h5" fontFamily={"Londrina Solid"}>
-                    {title}
-                </Typography>
-            </Box>
-        </Link>
+        <Box className="prestation--card">
+            <Typography variant="h5" fontFamily={"Londrina Solid"}>
+                {title}
+            </Typography>
+            <IconButton aria-label="addToBasket" color="secondary" onClick={addToBasket}>
+                <AddShoppingCartIcon />
+            </IconButton>
+        </Box>
     )
 }
 
